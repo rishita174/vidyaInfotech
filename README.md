@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vidya Infotech — Website
+
+Professional B2B website for **Vidya Infotech**, a Mumbai-based company providing
+professional office interior works and IT solutions.
+
+## Tech Stack
+
+- **Next.js** (App Router, Server Components by default)
+- **TypeScript**
+- **Tailwind CSS** (v4, CSS-first config)
+- **Lucide React** (icons)
+- **Framer Motion** (subtle animations only)
+- **PostgreSQL** via [Neon](https://neon.tech) (free tier) + **Drizzle ORM**
+- **Transactional email** via [Resend](https://resend.com) (free tier)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command          | Description                    |
+| ---------------- | ------------------------------ |
+| `npm run dev`    | Start the development server   |
+| `npm run build`  | Production build               |
+| `npm run start`  | Serve the production build     |
+| `npm run lint`   | Lint with ESLint               |
+| `npm run db:generate` | Generate Drizzle migrations |
+| `npm run db:push`     | Push schema to the database (Neon) |
+| `npm run db:studio`   | Open Drizzle Studio          |
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+| Route                          | Page                       |
+| ------------------------------ | -------------------------- |
+| `/`                            | Home                       |
+| `/services`                    | Services hub               |
+| `/services/laptop-repair`      | Laptop Repair              |
+| `/services/desktop-repair`     | Desktop Repair             |
+| `/services/cctv-installation`  | CCTV Installation          |
+| `/services/office-electrical-work` | Office Electrical Work |
+| `/services/office-furniture-repair` | Office Furniture Repair |
+| `/services/office-plumbing`    | Office Plumbing Service    |
+| `/services/office-carpet-flooring` | Office Carpet Flooring  |
+| `/why-choose-us`               | Why Choose Us              |
+| `/contact`                     | Contact                    |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                  # Next.js App Router routes
+├── components/
+│   ├── layout/           # Navbar, MobileMenu, Footer, MobileActionBar, WhatsAppButton
+│   ├── home/             # Homepage sections
+│   ├── services/         # Service cards, grids, benefits, CTAs
+│   ├── shared/           # CTAButton, SectionHeading, PageHeader, ContactStrip
+│   └── contact/          # EnquiryForm
+├── data/
+│   ├── services.ts       # Single source of truth for all service content
+│   └── site.ts           # Company / contact configuration
+├── lib/
+│   ├── site-config.ts    # Navigation, CTAs, page copy
+│   ├── contact-links.ts  # tel:, mailto:, WhatsApp helpers
+│   ├── seo.ts            # Metadata + LocalBusiness JSON-LD
+│   └── cn.ts             # Classname helper
+└── types/
+    └── service.ts        # Service data model types
+```
 
-## Deploy on Vercel
+## Content Rules
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All company content is derived from the supplied Vidya Infotech brochure.
+Do not add testimonials, client logos, statistics, certifications, pricing,
+or unsupported services. **Office Interior** is shown as a teaser only
+("More solutions coming soon") — it is not a published service page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Configuration Notes
+
+- **Site URL**: set `NEXT_PUBLIC_SITE_URL` for canonical URLs / Open Graph.
+  Defaults to `https://vidyainfotech.in` as a placeholder in `src/lib/seo.ts`.
+- **Enquiry form**: `POST /api/enquiries` persists to Neon Postgres (`enquiries`
+  table via Drizzle) and emails `support@vidyainfotechindia.com` through Resend.
+  Configure `DATABASE_URL`, `RESEND_API_KEY`, and optional `RESEND_FROM_EMAIL`
+  (see `.env.example`). Until `DATABASE_URL` is set the endpoint returns 503 and
+  the form falls back to Call / WhatsApp. Run `npm run db:push` once against
+  your Neon project.
+- **Images**: `/public/images/placeholder-service.svg` is a temporary
+  placeholder referenced from `src/data/services.ts`. Replace with real imagery
+  later.
