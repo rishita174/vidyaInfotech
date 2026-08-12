@@ -1,51 +1,66 @@
 import Image from "next/image";
-import { MapPin, Phone } from "lucide-react";
-import { hero } from "@/lib/site-config";
-import { imagery } from "@/data/imagery";
 import { CTAButton } from "@/components/shared/CTAButton";
+import { cta, routes } from "@/lib/site-config";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-espresso-950">
-      <div className="relative container-site py-16 sm:py-24 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rosewood-400">
-              {hero.eyebrow}
-            </p>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              {hero.title}
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
-              {hero.description}
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <CTAButton href={hero.primaryCta.href} withArrow>
-                {hero.primaryCta.label}
-              </CTAButton>
-              <CTAButton href={hero.secondaryCta.href} variant="light">
-                <Phone aria-hidden="true" className="h-4 w-4" />
-                {hero.secondaryCta.label}
-              </CTAButton>
-            </div>
-            <p className="mt-10 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-              <MapPin aria-hidden="true" className="h-4 w-4" />
-              {hero.localityLine}
-            </p>
+    <section id="hero" className="relative min-h-[600px] overflow-hidden bg-espresso-950 lg:min-h-[680px]">
+      {/* Background image — full-width, positioned to keep the person visible */}
+      <Image
+        src="/hero banner vidya infotech.png"
+        alt="Vidya Infotech professional scanning barcodes in a technology workspace with barcode printers and warehouse shelving"
+        fill
+        sizes="100vw"
+        className="object-cover object-[70%_center] sm:object-[60%_center] lg:object-center"
+        priority
+        quality={90}
+      />
+
+      {/* Gradient overlay — heavier on the left for text readability, lighter on the right to show the image */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-r from-espresso-950 via-espresso-950/85 to-espresso-950/20 lg:via-espresso-950/70 lg:to-transparent"
+      />
+
+      {/* Subtle bottom fade for visual polish */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-espresso-950/60 to-transparent"
+      />
+
+      {/* Content */}
+      <div className="relative container-site flex items-center py-20 sm:py-28 lg:py-32">
+        <div className="max-w-xl lg:max-w-2xl">
+          {/* Eyebrow */}
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rosewood-400">
+            Vidya Infotech
+          </p>
+
+          {/* Headline */}
+          <h1 className="mt-5 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[3.25rem] lg:leading-[1.1]">
+            Your Trusted Technology Partner for{" "}
+            <span className="text-rosewood-300">AIDC, CCTV</span> &amp; Complete IT Solutions
+          </h1>
+
+          {/* Supporting tagline */}
+          <p className="mt-5 text-lg leading-relaxed text-slate-300 sm:text-xl">
+            Smart Technology. Secure Operations. Better Business.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="mt-9 flex flex-wrap gap-3">
+            <CTAButton href={cta.getAQuote.href} withArrow>
+              Get a Quote
+            </CTAButton>
+            <CTAButton href={routes.services} variant="light">
+              Explore Our Solutions
+            </CTAButton>
           </div>
 
-          <div className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-espresso-700/70">
-              <Image
-                src={imagery.hero.src}
-                alt={imagery.hero.alt}
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
+          {/* Locality line */}
+          <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            Andheri East &middot; Mumbai
+          </p>
         </div>
       </div>
     </section>
