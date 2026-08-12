@@ -10,8 +10,7 @@ professional office interior works and IT solutions.
 - **Tailwind CSS** (v4, CSS-first config)
 - **Lucide React** (icons)
 - **Framer Motion** (subtle animations only)
-- **PostgreSQL** via [Neon](https://neon.tech) (free tier) + **Drizzle ORM**
-- **Transactional email** via [Resend](https://resend.com) (free tier)
+- **Formspree** (free tier) for the contact/enquiry form
 
 ## Getting Started
 
@@ -30,9 +29,6 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run build`  | Production build               |
 | `npm run start`  | Serve the production build     |
 | `npm run lint`   | Lint with ESLint               |
-| `npm run db:generate` | Generate Drizzle migrations |
-| `npm run db:push`     | Push schema to the database (Neon) |
-| `npm run db:studio`   | Open Drizzle Studio          |
 
 ## Routes
 
@@ -84,12 +80,10 @@ or unsupported services. **Office Interior** is shown as a teaser only
 
 - **Site URL**: set `NEXT_PUBLIC_SITE_URL` for canonical URLs / Open Graph.
   Defaults to `https://vidyainfotech.in` as a placeholder in `src/lib/seo.ts`.
-- **Enquiry form**: `POST /api/enquiries` persists to Neon Postgres (`enquiries`
-  table via Drizzle) and emails `support@vidyainfotechindia.com` through Resend.
-  Configure `DATABASE_URL`, `RESEND_API_KEY`, and optional `RESEND_FROM_EMAIL`
-  (see `.env.example`). Until `DATABASE_URL` is set the endpoint returns 503 and
-  the form falls back to Call / WhatsApp. Run `npm run db:push` once against
-  your Neon project.
+- **Enquiry form**: wired to Formspree's free tier via the
+  `NEXT_PUBLIC_FORMSPREE_FORM_ID` environment variable (see `.env.example`).
+  Set it to enable submission (inbox: `support@vidyainfotechindia.com`).
+  Until set, the form stays inert and falls back to Call / WhatsApp.
 - **Images**: `/public/images/placeholder-service.svg` is a temporary
   placeholder referenced from `src/data/services.ts`. Replace with real imagery
   later.

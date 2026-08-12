@@ -1,8 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
-import { SolutionsSection } from "@/components/home/SolutionsSection";
-import { FeaturedServices } from "@/components/home/FeaturedServices";
+import { HomeServices } from "@/components/home/HomeServices";
 import { WhyUs } from "@/components/home/WhyUs";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { CTASection } from "@/components/home/CTASection";
@@ -21,8 +20,7 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustStrip />
-      <SolutionsSection />
-      <FeaturedServices />
+      <HomeServices />
       <WhyUs />
       <ProcessSection />
       <CTASection />

@@ -20,10 +20,10 @@ export function ServiceOverview({
       <div className="container-site py-12 sm:py-14">
         <div className="grid items-start gap-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent-600">
+            <p className="text-sm font-semibold uppercase tracking-widest text-rosewood-600">
               Service Overview
             </p>
-            <h2 className="mt-3 text-2xl font-bold tracking-tight text-navy-950 sm:text-3xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-espresso-950 sm:text-3xl">
               {servicePageLabel(service.title)}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-600">
@@ -33,11 +33,11 @@ export function ServiceOverview({
           </div>
           <div className="lg:col-span-2">
             <dl>
-              <div className="border-t-2 border-navy-900 py-4">
+              <div className="border-t-2 border-espresso-900 py-4">
                 <dt className="text-xs font-semibold uppercase tracking-widest text-slate-500">
                   Service
                 </dt>
-                <dd className="mt-1.5 font-semibold text-navy-950">
+                <dd className="mt-1.5 font-semibold text-espresso-950">
                   {service.title}
                 </dd>
               </div>

@@ -29,7 +29,7 @@ export function SectionHeading({
         <p
           className={cn(
             "text-sm font-semibold uppercase tracking-wider",
-            onDark ? "text-accent-400" : "text-accent-600"
+            onDark ? "text-rosewood-400" : "text-rosewood-600"
           )}
         >
           {eyebrow}
@@ -38,7 +38,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "mt-2 text-3xl font-bold tracking-tight sm:text-4xl",
-          onDark ? "text-white" : "text-navy-950"
+          onDark ? "text-white" : "text-espresso-950"
         )}
       >
         {title}

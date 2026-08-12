@@ -69,12 +69,13 @@ export const cta = {
 } as const;
 
 export const hero = {
-  eyebrow: site.tagline,
-  title: "Professional Office & IT Solutions",
+  eyebrow: "VIDYA INFOTECH",
+  title: "Office Solutions. IT Support. One Reliable Partner.",
   description:
     "Vidya Infotech provides professional office interior works and IT solutions — computer repair, CCTV installation, and office maintenance services for workplaces in Mumbai.",
-  primaryCta: cta.exploreServices,
-  secondaryCta: cta.getAQuote,
+  primaryCta: cta.getAQuote,
+  secondaryCta: { label: `Call ${site.phone}`, href: site.phoneHref },
+  localityLine: "ANDHERI EAST \u00b7 MUMBAI",
 } as const;
 
 export const home = {

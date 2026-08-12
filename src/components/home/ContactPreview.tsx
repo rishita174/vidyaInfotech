@@ -38,44 +38,52 @@ export function ContactPreview() {
             />
             <Link
               href={routes.contact}
-              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-accent-600 transition-colors hover:text-accent-700"
+              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-rosewood-600 transition-colors hover:text-rosewood-700"
             >
               View Contact Page
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
           </div>
         </Reveal>
-        <Reveal delay={0.1}>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <Reveal delay={0.08}>
+          <ul className="mt-12 divide-y divide-slate-200 border-y border-slate-200">
             {contactItems.map((item) => {
               const Icon = item.icon;
               return (
-                <div
-                  key={item.label}
-                  className="rounded-lg border border-slate-200 bg-slate-50 p-7 transition-colors duration-200 hover:border-navy-200"
-                >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-navy-900 text-white">
-                    <Icon aria-hidden="true" className="h-5 w-5" />
-                  </span>
-                  <p className="mt-5 text-sm font-semibold uppercase tracking-wide text-slate-500">
-                    {item.label}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="mt-1 block text-lg font-semibold break-words text-navy-950 transition-colors hover:text-accent-600"
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p className="mt-1 break-words text-lg font-semibold text-navy-950">
-                      {item.value}
-                    </p>
-                  )}
-                </div>
+                <li key={item.label}>
+                  <div className="grid gap-3 py-7 sm:grid-cols-12 sm:gap-6">
+                    <div className="sm:col-span-3">
+                      <p className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+                        {item.label}
+                      </p>
+                    </div>
+                    <div className="sm:col-span-8">
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="inline-flex items-start gap-3 font-semibold break-words text-espresso-950 transition-colors hover:text-rosewood-600"
+                        >
+                          <Icon
+                            aria-hidden="true"
+                            className="mt-0.5 h-5 w-5 shrink-0 text-rosewood-600"
+                          />
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="inline-flex items-start gap-3 break-words text-espresso-950">
+                          <Icon
+                            aria-hidden="true"
+                            className="mt-0.5 h-5 w-5 shrink-0 text-rosewood-600"
+                          />
+                          {item.value}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </Reveal>
       </div>
     </section>

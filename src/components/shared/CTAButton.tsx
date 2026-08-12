@@ -15,14 +15,14 @@ interface CTAButtonProps {
 
 const variantClasses: Record<CTAButtonVariant, string> = {
   primary:
-    "bg-accent-500 text-navy-950 hover:bg-accent-400 focus-visible:outline-accent-600",
+    "bg-rosewood-700 text-cream-50 hover:bg-rosewood-600 focus-visible:outline-rosewood-700",
   secondary:
-    "bg-navy-900 text-white hover:bg-navy-800 focus-visible:outline-navy-900",
+    "bg-espresso-900 text-white hover:bg-espresso-800 focus-visible:outline-espresso-900",
   outline:
-    "border border-navy-200 bg-white text-navy-900 hover:border-navy-400 hover:bg-navy-50 focus-visible:outline-navy-900",
-  ghost: "text-navy-900 hover:bg-navy-50 focus-visible:outline-navy-900",
+    "border border-espresso-200 bg-white text-espresso-900 hover:border-espresso-400 hover:bg-espresso-50 focus-visible:outline-espresso-900",
+  ghost: "text-espresso-900 hover:bg-espresso-50 focus-visible:outline-espresso-900",
   light:
-    "bg-white text-navy-900 hover:bg-navy-50 focus-visible:outline-white",
+    "bg-white text-espresso-900 hover:bg-espresso-50 focus-visible:outline-white",
 };
 
 function isInternalHref(href: string): boolean {

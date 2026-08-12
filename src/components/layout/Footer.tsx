@@ -3,19 +3,17 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { cta, routes, servicesNavGroups } from "@/lib/site-config";
 import { CTAButton } from "@/components/shared/CTAButton";
+import { Logo } from "@/components/shared/Logo";
 import { categories } from "@/data/services";
 
 export function Footer() {
   return (
-    <footer className="bg-navy-950 text-slate-400">
+    <footer className="bg-espresso-950 text-slate-400">
       <div className="container-site py-16">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <Link href={routes.home} className="flex items-center gap-2.5">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-accent-500 text-sm font-bold text-navy-950">
-                V
-              </span>
-              <span className="text-lg font-bold text-white">{site.name}</span>
+            <Link href={routes.home} className="inline-block">
+              <Logo variant="light" height={44} />
             </Link>
             <p className="mt-4 text-sm leading-relaxed">{site.tagline}</p>
             <div className="mt-6">
@@ -123,7 +121,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-navy-800 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between sm:text-left">
+        <div className="mt-14 flex flex-col gap-2 border-t border-espresso-800 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between sm:text-left">
           <p>
             &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>

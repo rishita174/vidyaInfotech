@@ -13,6 +13,7 @@ import {
   servicesNavGroups,
 } from "@/lib/site-config";
 import { CTAButton } from "@/components/shared/CTAButton";
+import { Logo } from "@/components/shared/Logo";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { cn } from "@/lib/cn";
 
@@ -25,19 +26,14 @@ export function Navbar() {
     href === routes.home ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy-100 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-espresso-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href={routes.home}
-          className="flex items-center gap-2.5"
+          className="flex items-center"
           aria-label={`${site.nameDisplay} home`}
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-navy-900 text-sm font-bold text-white">
-            V
-          </span>
-          <span className="text-base font-bold tracking-tight text-navy-950 sm:text-lg">
-            {site.name}
-          </span>
+          <Logo height={36} />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
@@ -47,8 +43,8 @@ export function Navbar() {
             className={cn(
               "rounded-md px-3 py-2 text-sm font-medium transition-colors",
               isActive(routes.home)
-                ? "text-navy-950"
-                : "text-slate-700 hover:bg-slate-100 hover:text-navy-950"
+                ? "text-espresso-950"
+                : "text-slate-700 hover:bg-slate-100 hover:text-espresso-950"
             )}
           >
             Home
@@ -66,8 +62,8 @@ export function Navbar() {
               className={cn(
                 "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 isActive(routes.services)
-                  ? "text-navy-950"
-                  : "text-slate-700 hover:bg-slate-100 hover:text-navy-950"
+                  ? "text-espresso-950"
+                  : "text-slate-700 hover:bg-slate-100 hover:text-espresso-950"
               )}
             >
               Services
@@ -102,7 +98,7 @@ export function Navbar() {
                                 href={link.href}
                                 role="menuitem"
                                 onClick={() => setServicesOpen(false)}
-                                className="block rounded-md px-2 py-1.5 text-sm text-slate-700 transition-colors hover:bg-navy-50 hover:text-navy-950"
+                                className="block rounded-md px-2 py-1.5 text-sm text-slate-700 transition-colors hover:bg-espresso-50 hover:text-espresso-950"
                               >
                                 {link.label}
                               </Link>
@@ -115,7 +111,7 @@ export function Navbar() {
                   <Link
                     href={routes.services}
                     onClick={() => setServicesOpen(false)}
-                    className="mt-4 block rounded-md bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-navy-100"
+                    className="mt-4 block rounded-md bg-espresso-50 px-3 py-2.5 text-sm font-semibold text-espresso-900 transition-colors hover:bg-espresso-100"
                   >
                     View all services
                   </Link>
@@ -136,8 +132,8 @@ export function Navbar() {
                 className={cn(
                   "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   isActive(link.href)
-                    ? "text-navy-950"
-                    : "text-slate-700 hover:bg-slate-100 hover:text-navy-950"
+                    ? "text-espresso-950"
+                    : "text-slate-700 hover:bg-slate-100 hover:text-espresso-950"
                 )}
               >
                 {link.label}
@@ -158,7 +154,7 @@ export function Navbar() {
           onClick={() => setMobileOpen(true)}
           aria-label="Open menu"
           aria-expanded={mobileOpen}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-navy-950 transition-colors hover:bg-slate-100 lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-espresso-950 transition-colors hover:bg-slate-100 lg:hidden"
         >
           <Menu aria-hidden="true" className="h-6 w-6" />
         </button>

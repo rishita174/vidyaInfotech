@@ -12,6 +12,7 @@ import {
 } from "@/lib/site-config";
 import { site } from "@/data/site";
 import { CTAButton } from "@/components/shared/CTAButton";
+import { Logo } from "@/components/shared/Logo";
 import { whatsappLink } from "@/lib/contact-links";
 import { cn } from "@/lib/cn";
 
@@ -45,7 +46,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           className="fixed inset-0 z-50 lg:hidden"
         >
           <div
-            className="absolute inset-0 bg-navy-950/60"
+            className="absolute inset-0 bg-espresso-950/60"
             onClick={onClose}
             aria-hidden="true"
           />
@@ -72,12 +73,14 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
       aria-label="Menu"
     >
       <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
-        <span className="text-base font-bold text-navy-950">{site.name}</span>
+        <span className="flex items-center">
+          <Logo height={32} />
+        </span>
         <button
           type="button"
           onClick={onClose}
           aria-label="Close menu"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-navy-950 transition-colors hover:bg-slate-100"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-espresso-950 transition-colors hover:bg-slate-100"
         >
           <X aria-hidden="true" className="h-6 w-6" />
         </button>
@@ -92,7 +95,7 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
                 <Link
                   href={link.href}
                   onClick={onClose}
-                  className="block rounded-md px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy-950"
+                  className="block rounded-md px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-espresso-950"
                 >
                   {link.label}
                 </Link>
@@ -105,7 +108,7 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
             type="button"
             onClick={() => setServicesExpanded((expanded) => !expanded)}
             aria-expanded={servicesExpanded}
-            className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy-950"
+            className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-espresso-950"
           >
             Services
             <ChevronDown
@@ -125,7 +128,7 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
                 transition={{ duration: 0.2 }}
                 className="overflow-hidden"
               >
-                <div className="mt-1 border-l-2 border-navy-100 pl-3">
+                <div className="mt-1 border-l-2 border-espresso-100 pl-3">
                   {servicesNavGroups.map((group) => (
                     <div key={group.label} className="mb-4">
                       <p className="px-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -137,7 +140,7 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
                             <Link
                               href={link.href}
                               onClick={onClose}
-                              className="block rounded-md px-2 py-2 text-base text-slate-600 transition-colors hover:bg-slate-100 hover:text-navy-950"
+                              className="block rounded-md px-2 py-2 text-base text-slate-600 transition-colors hover:bg-slate-100 hover:text-espresso-950"
                             >
                               {link.label}
                             </Link>
@@ -177,7 +180,7 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
         <Link
           href={routes.services}
           onClick={onClose}
-          className="block rounded-md px-3 py-2 text-center text-sm font-semibold text-navy-900 underline-offset-2 hover:underline"
+          className="block rounded-md px-3 py-2 text-center text-sm font-semibold text-espresso-900 underline-offset-2 hover:underline"
         >
           View all services
         </Link>

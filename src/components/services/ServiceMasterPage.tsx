@@ -30,44 +30,32 @@ export function ServiceMasterPage({
       <section className="border-b border-slate-200 bg-white">
         <div className="container-site py-12 sm:py-14">
           <Reveal>
-            <div className="border-b-2 border-navy-900 pb-3">
-              <h2 className="text-2xl font-bold tracking-tight text-navy-950">
+            <div className="border-b-2 border-espresso-900 pb-3">
+              <h2 className="text-2xl font-bold tracking-tight text-espresso-950">
                 Why This Service
               </h2>
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <ol className="divide-y divide-slate-200">
-              {service.benefits.map((benefit, index) => (
-                <li
-                  key={benefit.title}
-                  className="grid gap-3 py-8 sm:grid-cols-12 sm:gap-6 sm:py-10"
-                >
-                  <span className="text-3xl font-bold tabular-nums leading-none tracking-tight text-slate-300 sm:col-span-2">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="sm:col-span-10">
-                    <h3 className="text-2xl font-semibold tracking-tight text-navy-950">
-                      {benefit.title}
-                    </h3>
-                    {benefit.description ? (
-                      <p className="mt-2 max-w-xl text-slate-600">
-                        {benefit.description}
-                      </p>
-                    ) : null}
-                  </div>
+            <ul className="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-2">
+              {service.benefits.map((benefit) => (
+                <li key={benefit.title} className="border-t border-slate-200 pt-5">
+                  <h3 className="text-xl font-semibold tracking-tight text-espresso-950">
+                    {benefit.title}
+                  </h3>
+                  {benefit.description ? (
+                    <p className="mt-2 max-w-xl text-slate-600">
+                      {benefit.description}
+                    </p>
+                  ) : null}
                 </li>
               ))}
-            </ol>
+            </ul>
           </Reveal>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-navy-950">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-grid-light opacity-30"
-        />
+      <section className="relative overflow-hidden bg-espresso-950">
         <div className="relative container-site py-14 sm:py-16">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">

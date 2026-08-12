@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #16233b;
+  /* Alabaster Cream — primary page background */
+  --background: #f1e3c6;
+  /* Charcoal Espresso — primary text */
+  --foreground: #2e2e2e;
 }
 
 @theme inline {
@@ -12,29 +14,55 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 
-  /* Deep navy — primary brand */
-  --color-navy-50: #f2f6fc;
-  --color-navy-100: #e4ecf8;
-  --color-navy-200: #c8d8ef;
-  --color-navy-300: #9fbce2;
-  --color-navy-400: #6f97cf;
-  --color-navy-500: #4b74b9;
-  --color-navy-600: #385a9c;
-  --color-navy-700: #2d4a81;
-  --color-navy-800: #23385f;
-  --color-navy-900: #0f2440;
-  --color-navy-950: #081830;
+  /* Alabaster Cream — page background and light surfaces */
+  --color-cream-50: #faf4e7;
+  --color-cream-100: #f7eedb;
+  --color-cream-200: #f1e3c6;
+  --color-cream-300: #e8d2a5;
+  --color-cream-400: #dcbc7f;
+  --color-cream-500: #cba15a;
+  --color-cream-600: #b28340;
+  --color-cream-700: #8f6732;
+  --color-cream-800: #71512b;
+  --color-cream-900: #5a3f22;
 
-  /* Amber / orange — accent for CTAs */
-  --color-accent-50: #fff8eb;
-  --color-accent-100: #ffedc2;
-  --color-accent-200: #ffd88a;
-  --color-accent-300: #ffc14d;
-  --color-accent-400: #ffaa24;
-  --color-accent-500: #f5860a;
-  --color-accent-600: #d96e06;
-  --color-accent-700: #b55408;
-  --color-accent-800: #92400d;
+  /* Charcoal Espresso — primary text and dark UI */
+  --color-espresso-50: #f6f4f1;
+  --color-espresso-100: #ede9e4;
+  --color-espresso-200: #dbd4cc;
+  --color-espresso-300: #bfb3a6;
+  --color-espresso-400: #9c8e80;
+  --color-espresso-500: #7a6d5f;
+  --color-espresso-600: #5e544a;
+  --color-espresso-700: #4a423b;
+  --color-espresso-800: #3a3530;
+  --color-espresso-900: #33302c;
+  --color-espresso-950: #2e2e2e;
+
+  /* Vintage Rosewood — restrained accent / CTA */
+  --color-rosewood-50: #fbf3f4;
+  --color-rosewood-100: #f6e2e4;
+  --color-rosewood-200: #ecc4c8;
+  --color-rosewood-300: #dd9ca2;
+  --color-rosewood-400: #c47078;
+  --color-rosewood-500: #a2505a;
+  --color-rosewood-600: #8a434c;
+  --color-rosewood-700: #7d4047;
+  --color-rosewood-800: #66343a;
+  --color-rosewood-900: #542c31;
+
+  /* Warm Grey — secondary sections, muted text, borders */
+  --color-slate-50: #eff1f0;
+  --color-slate-100: #e1e6e5;
+  --color-slate-200: #c5cdcc;
+  --color-slate-300: #a3b0af;
+  --color-slate-400: #7f9292;
+  --color-slate-500: #64787a;
+  --color-slate-600: #4a6061;
+  --color-slate-700: #3d5c5d;
+  --color-slate-800: #334a4b;
+  --color-slate-900: #2a3b3c;
+  --color-slate-950: #1f2b2c;
 }
 
 @layer base {
@@ -50,8 +78,8 @@
   }
 
   ::selection {
-    background-color: var(--color-accent-200);
-    color: var(--color-navy-950);
+    background-color: var(--color-rosewood-200);
+    color: var(--color-espresso-950);
   }
 }
 
@@ -70,29 +98,9 @@
   }
 }
 
-@utility bg-grid-light {
-  background-image: linear-gradient(
-      to right,
-      rgb(255 255 255 / 0.08) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.08) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-@utility bg-grid-dark {
-  background-image: linear-gradient(
-      to right,
-      rgb(15 36 64 / 0.09) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb(15 36 64 / 0.09) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
 @layer base {
   :focus-visible {
-    outline: 2px solid var(--color-accent-500);
+    outline: 2px solid var(--color-rosewood-600);
     outline-offset: 2px;
     border-radius: 2px;
   }

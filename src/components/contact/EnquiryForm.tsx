@@ -11,13 +11,18 @@ interface EnquiryFormProps {
   defaultService?: string;
 }
 
-type SubmitStatus = "idle" | "submitting" | "success" | "error" | "unconfigured";
+type SubmitStatus = "idle" | "submitting" | "success" | "error";
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/";
+const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "";
 
 /**
- * Enquiry form backed by the `/api/enquiries` route (Neon Postgres + Resend).
- * The endpoint returns 503 when storage is not configured; the form then
- * shows a notice. Call / WhatsApp remain available as fallback actions in
- * every state.
+ * Enquiry form wired to a Formspree form (free tier).
+ *
+ * The form only submits when a Form ID is provided via the
+ * `NEXT_PUBLIC_FORMSPREE_FORM_ID` environment variable (see `.env.example`).
+ * Without one the form stays inert and shows a notice — Call / WhatsApp
+ * remain available as fallback actions in every state.
  */
 export function EnquiryForm({ defaultService }: EnquiryFormProps) {
   const [name, setName] = useState("");
@@ -27,17 +32,30 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<SubmitStatus>("idle");
 
+  const notConfigured = formId.trim().length === 0;
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (notConfigured) {
+      setStatus("idle");
+      return;
+    }
 
     setStatus("submitting");
     try {
-      const response = await fetch("/api/enquiries", {
+      const response = await fetch(`${FORMSPREE_ENDPOINT}${formId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify({ name, phone, email, service, message }),
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          service,
+          message,
+        }),
       });
 
       if (response.ok) {
@@ -47,15 +65,9 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
         setEmail("");
         setService("");
         setMessage("");
-        return;
+      } else {
+        setStatus("error");
       }
-
-      if (response.status === 503) {
-        setStatus("unconfigured");
-        return;
-      }
-
-      setStatus("error");
     } catch {
       setStatus("error");
     }
@@ -65,7 +77,7 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
     <div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="mb-1 block text-sm font-medium text-navy-950">
+          <label htmlFor="name" className="mb-1 block text-sm font-medium text-espresso-950">
             Name
           </label>
           <input
@@ -75,11 +87,11 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
             required
             value={name}
             onChange={(event) => setName(event.target.value)}
-            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-200"
+            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-espresso-500 focus:outline-none focus:ring-2 focus:ring-espresso-200"
           />
         </div>
         <div>
-          <label htmlFor="phone" className="mb-1 block text-sm font-medium text-navy-950">
+          <label htmlFor="phone" className="mb-1 block text-sm font-medium text-espresso-950">
             Phone
           </label>
           <input
@@ -89,11 +101,11 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
             required
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
-            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-200"
+            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-espresso-500 focus:outline-none focus:ring-2 focus:ring-espresso-200"
           />
         </div>
         <div>
-          <label htmlFor="email" className="mb-1 block text-sm font-medium text-navy-950">
+          <label htmlFor="email" className="mb-1 block text-sm font-medium text-espresso-950">
             Email
           </label>
           <input
@@ -102,11 +114,11 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-200"
+            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-espresso-500 focus:outline-none focus:ring-2 focus:ring-espresso-200"
           />
         </div>
         <div>
-          <label htmlFor="service" className="mb-1 block text-sm font-medium text-navy-950">
+          <label htmlFor="service" className="mb-1 block text-sm font-medium text-espresso-950">
             Service
           </label>
           <select
@@ -114,7 +126,7 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
             name="service"
             value={service}
             onChange={(event) => setService(event.target.value)}
-            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-200"
+            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 focus:border-espresso-500 focus:outline-none focus:ring-2 focus:ring-espresso-200"
           >
             <option value="">Select a service</option>
             {services.map((item) => (
@@ -125,7 +137,7 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
           </select>
         </div>
         <div>
-          <label htmlFor="message" className="mb-1 block text-sm font-medium text-navy-950">
+          <label htmlFor="message" className="mb-1 block text-sm font-medium text-espresso-950">
             Message
           </label>
           <textarea
@@ -134,19 +146,19 @@ export function EnquiryForm({ defaultService }: EnquiryFormProps) {
             rows={4}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
-            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-200"
+            className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 focus:border-espresso-500 focus:outline-none focus:ring-2 focus:ring-espresso-200"
           />
         </div>
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent-500 px-5 py-2.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-accent-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-600 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-rosewood-700 px-5 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-rosewood-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rosewood-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "submitting" ? "Submitting..." : "Submit Enquiry"}
         </button>
       </form>
 
-      {status === "unconfigured" ? (
+      {notConfigured ? (
         <p
           role="status"
           className="mt-4 rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800"

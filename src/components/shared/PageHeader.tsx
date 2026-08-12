@@ -14,15 +14,11 @@ export function PageHeader({
   className,
 }: PageHeaderProps) {
   return (
-    <div className={cn("relative overflow-hidden bg-navy-950", className)}>
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-grid-light opacity-40"
-      />
+    <div className={cn("relative overflow-hidden bg-espresso-950", className)}>
       <div className="relative container-site py-16 sm:py-20">
         <div className="max-w-3xl">
           {eyebrow ? (
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent-400">
+            <p className="text-sm font-semibold uppercase tracking-widest text-rosewood-400">
               {eyebrow}
             </p>
           ) : null}
