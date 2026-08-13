@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { defaultMetadata, localBusinessJsonLd } from "@/lib/seo";
 
 const inter = Inter({
@@ -36,7 +35,6 @@ export default function RootLayout({
         <main className="pb-16 lg:pb-0">{children}</main>
         <Footer />
         <MobileActionBar />
-        <WhatsAppButton />
       </body>
     </html>
   );

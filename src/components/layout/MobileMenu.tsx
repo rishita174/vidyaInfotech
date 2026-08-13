@@ -59,6 +59,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
 function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
   const [servicesExpanded, setServicesExpanded] = useState(false);
+  const [solutionsExpanded, setSolutionsExpanded] = useState(false);
   const reduceMotion = useReducedMotion();
 
   return (
@@ -89,7 +90,12 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
       <nav aria-label="Mobile" className="flex-1 px-5 py-4">
         <ul className="space-y-1">
           {primaryNav
-            .filter((link) => link.label !== "Services")
+            .filter(
+              (link) =>
+                link.href !== routes.home &&
+                link.label !== "Services" &&
+                link.label !== "Contact"
+            )
             .map((link) => (
               <li key={link.href}>
                 <Link
@@ -149,6 +155,41 @@ function MobileMenuDrawer({ onClose }: { onClose: () => void }) {
                       </ul>
                     </div>
                   ))}
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
+
+        <div className="mt-2">
+          <button
+            type="button"
+            onClick={() => setSolutionsExpanded((expanded) => !expanded)}
+            aria-expanded={solutionsExpanded}
+            className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-espresso-950"
+          >
+            Solutions
+            <ChevronDown
+              aria-hidden="true"
+              className={cn(
+                "h-5 w-5 transition-transform",
+                solutionsExpanded && "rotate-180"
+              )}
+            />
+          </button>
+          <AnimatePresence initial={false}>
+            {solutionsExpanded ? (
+              <motion.div
+                initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-1 border-l-2 border-espresso-100 pl-3">
+                  <div className="py-4 px-2 text-sm text-slate-500">
+                    Software products coming soon.
+                  </div>
                 </div>
               </motion.div>
             ) : null}

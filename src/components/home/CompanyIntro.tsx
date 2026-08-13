@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Cpu,
   Cctv,
@@ -6,14 +7,47 @@ import {
   MonitorSmartphone,
 } from "lucide-react";
 import { Reveal } from "@/components/shared/Reveal";
+import type { LucideIcon } from "lucide-react";
 
-const solutionAreas = [
-  { label: "AIDC", icon: Cpu },
-  { label: "CCTV", icon: Cctv },
-  { label: "IT Infrastructure", icon: Server },
-  { label: "Networking", icon: Network },
-  { label: "Digital Solutions", icon: MonitorSmartphone },
-] as const;
+interface SolutionArea {
+  label: string;
+  description: string;
+  icon: LucideIcon;
+  href: string;
+}
+
+const solutionAreas: SolutionArea[] = [
+  {
+    label: "AIDC",
+    description: "Barcode, RFID & Data Capture",
+    icon: Cpu,
+    href: "/services",
+  },
+  {
+    label: "CCTV",
+    description: "Security & Surveillance",
+    icon: Cctv,
+    href: "/services/cctv-installation",
+  },
+  {
+    label: "IT Infrastructure",
+    description: "Hardware & Systems",
+    icon: Server,
+    href: "/services",
+  },
+  {
+    label: "Networking",
+    description: "Connectivity & Network Solutions",
+    icon: Network,
+    href: "/services",
+  },
+  {
+    label: "Digital Solutions",
+    description: "Technology & Business Solutions",
+    icon: MonitorSmartphone,
+    href: "/services",
+  },
+];
 
 export function CompanyIntro() {
   return (
@@ -35,42 +69,42 @@ export function CompanyIntro() {
             <div className="lg:col-span-7">
               <div className="space-y-5 text-[1.0625rem] leading-relaxed text-slate-600">
                 <p>
-                  Vidya Infotech is a technology solutions provider offering end-to-end AIDC, CCTV, IT Infrastructure, Networking and Digital Solutions for businesses across industries.
+                  Vidya Infotech is a technology solutions provider delivering AIDC, CCTV, IT infrastructure, networking and digital solutions for businesses across industries.
                 </p>
                 <p>
-                  We provide Barcode &amp; Data Capture, RFID, Mobile Computing, Barcode Printing, CCTV Surveillance, Networking, IT Hardware, Security Solutions and System Integration, supported by leading OEM technologies and professional service expertise.
-                </p>
-                <p>
-                  Our focus is to deliver reliable, scalable and cost-effective technology solutions that improve security, operational efficiency, accuracy and productivity.
+                  From barcode and RFID systems to surveillance, networking and IT hardware, we combine reliable products with professional technical expertise to help businesses operate securely and efficiently.
                 </p>
               </div>
             </div>
           </div>
         </Reveal>
 
-        {/* Solution areas — visual highlight strip */}
+        {/* Solution areas — interactive category row */}
         <Reveal delay={0.08}>
           <div className="mt-14 border-t border-slate-200 pt-10">
-            <ul className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-              {solutionAreas.map(({ label, icon: Icon }) => (
-                <li key={label} className="group flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-rosewood-50 text-rosewood-600 transition-colors group-hover:bg-rosewood-100">
-                    <Icon aria-hidden="true" className="h-5 w-5" />
-                  </span>
-                  <span className="text-sm font-semibold text-espresso-950">
-                    {label}
-                  </span>
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
+              {solutionAreas.map(({ label, description, icon: Icon, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    className="group flex items-start gap-3.5 rounded-lg border border-slate-100 bg-white px-4 py-4 transition-all duration-200 hover:border-rosewood-200 hover:bg-rosewood-50/40 hover:shadow-sm lg:flex-col lg:items-start lg:gap-3 lg:px-5 lg:py-5"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-rosewood-50 text-rosewood-600 transition-colors group-hover:bg-rosewood-100">
+                      <Icon aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <span className="text-sm font-semibold text-espresso-950">
+                        {label}
+                      </span>
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-500">
+                        {description}
+                      </p>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
-        </Reveal>
-
-        {/* Closing tagline */}
-        <Reveal delay={0.12}>
-          <p className="mt-12 border-l-2 border-rosewood-500 pl-5 text-lg font-medium text-espresso-800">
-            Vidya Infotech — Smart Technology. Secure Operations. Better Business.
-          </p>
         </Reveal>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { CTAButton } from "@/components/shared/CTAButton";
-import { cta, routes } from "@/lib/site-config";
+import { cta } from "@/lib/site-config";
 
 export function Hero() {
   return (
@@ -31,36 +31,30 @@ export function Hero() {
       {/* Content */}
       <div className="relative container-site flex items-center py-20 sm:py-28 lg:py-32">
         <div className="max-w-xl lg:max-w-2xl">
-          {/* Eyebrow */}
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rosewood-400">
-            Vidya Infotech
-          </p>
-
           {/* Headline */}
-          <h1 className="mt-5 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[3.25rem] lg:leading-[1.1]">
-            Your Trusted Technology Partner for{" "}
-            <span className="text-rosewood-300">AIDC, CCTV</span> &amp; Complete IT Solutions
+          <h1 className="text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+            Smart Technology.
+            <br />
+            <span className="text-rosewood-300">Reliable Solutions.</span>
+            <br />
+            For Your Business.
           </h1>
 
-          {/* Supporting tagline */}
-          <p className="mt-5 text-lg leading-relaxed text-slate-300 sm:text-xl">
-            Smart Technology. Secure Operations. Better Business.
+          {/* Supporting text */}
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-slate-300 sm:text-lg">
+            AIDC, CCTV, IT infrastructure and networking solutions for businesses across Mumbai.
           </p>
 
           {/* CTA buttons */}
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             <CTAButton href={cta.getAQuote.href} withArrow>
               Get a Quote
             </CTAButton>
-            <CTAButton href={routes.services} variant="light">
-              Explore Our Solutions
+            <CTAButton href="/products" variant="light">
+              Browse Products
             </CTAButton>
           </div>
 
-          {/* Locality line */}
-          <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-            Andheri East &middot; Mumbai
-          </p>
         </div>
       </div>
     </section>
